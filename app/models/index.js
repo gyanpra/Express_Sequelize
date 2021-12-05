@@ -24,4 +24,5 @@ db.policies = require("./policy.model.js")(sequelize, Sequelize);
 db.users = require("./user.model.js")(sequelize, Sequelize);
 db.test = require("./test.model.js")(sequelize, Sequelize);
 
+
 module.exports = db;

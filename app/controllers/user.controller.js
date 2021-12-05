@@ -1,6 +1,7 @@
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
+const jwt = require('jsonwebtoken');
 
 
 //Register User
@@ -35,24 +36,36 @@ exports.login = (req, res) => {
         name: req.body.name,
         password: req.body.password
         }
-
-    })
-        .then(user => {
+    }).then(user => {
         if (!user) {
             return res.status(404).send({
             message: "User Not Found"
             });
         }
-        res.send(" Valid user found");
+        else{
+          if(user.role === "admin" || user.role === "user"){
+            const token = jwt.sign({ id: user.id }, 'secret', {
+              expiresIn: 86400 // expires in 24 hours
+            });
+            return res.status(200).send({
+                message: "Logged in Successfully",
+                token: token,
+                user: user.name,
+                id: user.id,
+                success: true,
+                expiresIn: 86400
+            });
+          }
+        }
         })
         .catch(err => {
         if (err.kind === "ObjectId") {
             return res.status(404).send({
-            message: "User Not Found"
+            message: "Server error"
             });
-        }
+          }
         return res.status(500).send({
-            message: "Error retrieving User with id " + req.params.id
+        message: "Error retrieving User with id " + req.params.id
         });
         });
     };

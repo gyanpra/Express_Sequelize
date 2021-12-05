@@ -1,3 +1,5 @@
+
+
 module.exports = (sequelize, Sequelize) => {
     const Policy = sequelize.define("policy", {
       number: {
@@ -19,5 +21,7 @@ module.exports = (sequelize, Sequelize) => {
   
     return Policy;
   };
+
+
 
   
