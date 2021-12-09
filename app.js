@@ -21,10 +21,9 @@ db.sequelize.sync();
 // });
 
 
-require("./app/routes/employee.routes")(app);
-require("./app/routes/policy.routes")(app);
 require("./app/routes/user.routes")(app);
-
+require("./app/routes/otp.routes")(app);
+require("./app/routes/employee.routes")(app);
 
 
 app.listen(8080, () => {

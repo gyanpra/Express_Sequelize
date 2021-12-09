@@ -11,14 +11,29 @@ module.exports = (sequelize, Sequelize) => {
             unique: true
 
         },
-        password: {
+        email: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            unique: true
+        },
+        hashedPassword: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        role: {
+        phone: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true
+        },
+
+        isAdmin: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
         },  
+        address: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
     });
   
     return User;

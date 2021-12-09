@@ -1,23 +1,23 @@
 module.exports = (sequelize, Sequelize) => {
-    const Test = sequelize.define("test", {
+    const Otp = sequelize.define("otp", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
+        email: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        otp: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        password: {
-            type: Sequelize.STRING,
+        expiresIn: {
+            type: Sequelize.DATE,
             allowNull: false
         },
-        role: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },  
     });
   
-    return Test;
+    return Otp;
   };
